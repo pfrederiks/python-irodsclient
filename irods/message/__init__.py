@@ -80,7 +80,7 @@ class iRODSMessage(object):
         )
         msg_header_length = struct.pack(">i", len(msg_header))
         parts = [x for x in [main_msg, self.error, self.bs] if x is not None]
-        msg = msg_header_length + msg_header + "".join(parts)
+        msg = msg_header_length + msg_header + "".join(parts).encode('utf-8')
         return msg
 
     def get_main_message(self, cls):
